@@ -41,7 +41,7 @@ namespace MemeSystem.Pages
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new History
                     {
-                        Text = array[0]
+                        Text = array[1]+ "\n#" + array[2],
                     });
                 }
             }
