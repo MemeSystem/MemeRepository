@@ -27,6 +27,7 @@ namespace MemeSystem.Pages
         class History
         {
             public string Text { get; set; } = null!;
+            public int id;
         }
 
         public Story()
@@ -61,7 +62,36 @@ namespace MemeSystem.Pages
 
         private void RandomStory_Click(object sender, RoutedEventArgs e)
         {
-
+            List<History> historis = new();
+            int i = 0;
+            using (StreamReader sr = new(path_history, Encoding.UTF8))
+            {
+                while (sr.EndOfStream != true)
+                {
+                    string[] array = sr.ReadLine().Split(';');
+                    i++;
+                }
+            }
+            Random rnd = new Random();
+            int random_story = rnd.Next(0, i);
+            i = 0;
+            using (StreamReader sr = new(path_history, Encoding.UTF8))
+            {
+                while (sr.EndOfStream != true)
+                {
+                    string[] array = sr.ReadLine().Split(';');
+                    if (i == random_story)
+                    {
+                        historis.Add(new History
+                        {
+                            Text = "Автор: " + array[0] + "\nНазвание: " + array[1] + "\n#" + array[2] + "\n\n" + array[3],
+                            id = i
+                        });
+                    }
+                    i++;
+                }
+            }
+            List.ItemsSource = historis;
         }
     }
 }
