@@ -66,7 +66,7 @@ namespace MemeSystem.Pages
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new History
                     {
-                        Text = "Автор: " + array[0] + "\nНазвание: " + array[1] + "\n#" + array[2] + "\n\n" + array[3]+"\nПонравилось " + array[4]+" людям",
+                        Text = "Автор: " + array[0] + "\nНазвание: " + array[1] + "\n#" + array[2] + "\n\n" + array[3]+"\n\nПонравилось " + array[4]+" людям",
                         likes = Convert.ToInt32(array[4])
                     });
                 }
