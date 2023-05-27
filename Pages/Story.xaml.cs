@@ -1,6 +1,7 @@
 ﻿using MemeSystem.Account;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace MemeSystem.Pages
         {
             public string Text { get; set; } = null!;
             public int id;
+            public int likes;
         }
 
         public Story()
@@ -42,7 +44,7 @@ namespace MemeSystem.Pages
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new History
                     {
-                        Text = array[1]+ "\n#" + array[2],
+                        Text = array[1] + "\n#" + array[2],
                     });
                 }
             }
@@ -52,7 +54,56 @@ namespace MemeSystem.Pages
 
         private void Popular_Click(object sender, RoutedEventArgs e)
         {
+            List<History> historis = new();
+            historis.Add(new History
+            {
+                Text = "Топ 3 самых популярных историй"
+            });
+            using (StreamReader sr = new(path_history, Encoding.UTF8))
+            {
+                while (sr.EndOfStream != true)
+                {
+                    string[] array = sr.ReadLine().Split(';');
+                    historis.Add(new History
+                    {
+                        Text = "Автор: " + array[0] + "\nНазвание: " + array[1] + "\n#" + array[2] + "\n\n" + array[3]+"\nПонравилось " + array[4]+" людям",
+                        likes = Convert.ToInt32(array[4])
+                    });
+                }
+            }
+            List<History> popular = new();
+            int s, flag = 0;
+            s = historis.Max(x => x.likes);
+            foreach (History history in historis)
+            {
+                if (s == history.likes)
+                {
+                    popular.Add(history);
+                }
+            }
+            var h1 = historis.Except(popular).ToList();
+            s = h1.Max(x => x.likes);
+            foreach (History history in h1)
+            {
+                if (s == history.likes)
+                {
+                    if (s == history.likes)
+                    {
+                        popular.Add(history);
+                    }
+                }
+            }
+            var h2 = historis.Except(popular).ToList();
+            s = h2.Max(x => x.likes);
+            foreach (History history in h2)
+            {
+                if (s == history.likes)
+                {
+                    popular.Add(history);
+                }
+            }
 
+            List.ItemsSource = popular;
         }
 
         private void ByTag_Click(object sender, RoutedEventArgs e)
