@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <PackageIcon>meme.ico</PackageIcon>
+    <ApplicationIcon>imagesSystem\meme1.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="imagesSystem\noneUser.jpg" />
+    <None Remove="imagesSystem\nouname.png" />
+    <None Remove="imagesSystem\nounameBanner.jpg" />
+    <None Remove="imagesSystem\SettingItem.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="imagesSystem\meme1.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="imagesAccount\" />
+    <Folder Include="FIles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="imagesSystem\noneUser.jpg" />
+    <Resource Include="imagesSystem\nouname.png" />
+    <Resource Include="imagesSystem\nounameBanner.jpg" />
+    <Resource Include="imagesSystem\SettingItem.png" />
+  </ItemGroup>
+
+</Project>
