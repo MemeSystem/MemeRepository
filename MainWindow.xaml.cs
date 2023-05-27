@@ -74,9 +74,16 @@ namespace MemeSystem
             bool Enters = (bool)App.Current.Properties["EnterUser"];
             if (Enters == true)
             {
-                Ent.Visibility = Visibility.Hidden;
-                Registr.Visibility = Visibility.Hidden;
+                Ent.Visibility = Visibility.Collapsed;
+                Registr.Visibility = Visibility.Collapsed;
+                Me.Visibility = Visibility.Visible;
                 MainFrame.Navigate(new Profile());
+            }
+            else
+            {
+                Ent.Visibility = Visibility.Visible;
+                Registr.Visibility = Visibility.Visible;
+                Me.Visibility = Visibility.Collapsed;
             }
         }
 

@@ -17,7 +17,7 @@ namespace MemeSystem.Account
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            EllipseUserPhoto.Height = EllipseUserPhoto.Height * 10;
+            //EllipseUserPhoto.Height = EllipseUserPhoto.Height * 10;
             //EllipseUserPhoto.Width = EllipseUserPhoto.Width * 5;
             //BannerImage.Height = BannerImage.ActualHeight * 100;
         }

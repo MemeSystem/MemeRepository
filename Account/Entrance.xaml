@@ -167,6 +167,6 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Content="войти" HorizontalAlignment="Center" Margin="0,-20,0,0" Grid.Row="6" VerticalAlignment="Top" Height="50" Width="150" FontFamily="Sitka Subheading" FontSize="23" Click="EnterClick"/>
+        <Button Content="войти" HorizontalAlignment="Center" Margin="0,-20,0,0" Grid.Row="6" VerticalAlignment="Top" Height="50" Width="150" FontFamily="Sitka Subheading" FontSize="23" Click="EnterClick" IsDefault="True"/>
     </Grid>
 </Window>

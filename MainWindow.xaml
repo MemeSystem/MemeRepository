@@ -313,8 +313,9 @@
             <MenuItem x:Name="Second" Header="теги" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="120" Margin="10,0,0,0"/>
             <MenuItem x:Name="Third" Header="новая история" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="220" Margin="10,0,0,0"/>
             <MenuItem x:Name="Fourth" Header="профиль" BorderThickness="0,0,0,0" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="160" Margin="10,0,0,0" Click="Profile_click">
-                <MenuItem x:Name="Ent" Header="вход" Foreground="#e6e6e6" FontFamily="Sitka Subheading" FontSize="24" Background="#40000000" Height="30" Margin="1,1,1,1" Click="Ent_Click"/>
-                <MenuItem x:Name="Registr" Header="регистрация" Foreground="#e6e6e6" FontFamily="Sitka Subheading" FontSize="24" Height="30" Margin="1,1,1,1" Click="Registr_Click"/>
+                <MenuItem x:Name="Ent" Header="вход" Foreground="#e6e6e6" FontFamily="Sitka Subheading" FontSize="24" Height="30" Click="Ent_Click" Background="#40000000"/>
+                <MenuItem x:Name="Registr" Header="регистрация" Foreground="#e6e6e6" FontFamily="Sitka Subheading" FontSize="24" Height="30"  Click="Registr_Click" Background="#40000000"/>
+                <MenuItem x:Name="Me" Header="я" Foreground="#e6e6e6" FontFamily="Sitka Subheading" FontSize="24" Height="30"  Click="Profile_click" Background="#40000000" Visibility="Collapsed"/>
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>

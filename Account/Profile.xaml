@@ -53,20 +53,17 @@
         <Image  x:Name ="BannerImage" Grid.ColumnSpan="8"  Grid.RowSpan="2" Margin="50,20,50,20" Source="../imagesSystem/nounameBanner.jpg">
         </Image>
         <Grid Grid.Row="2" Grid.Column="1">
-            <Ellipse x:Name="EllipseUserPhoto" Margin="50,-40,10,80" Grid.Row="2" Grid.Column="1">
+            <Ellipse x:Name="EllipseUserPhoto" Margin="50,-40,10,80" Grid.Row="2" Grid.Column="1" Width="110" Height="110">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/imagesSystem/noneUser.jpg"/>
                 </Ellipse.Fill>
             </Ellipse>
         </Grid>
-        
+
         <Label x:Name="NickNameUser" Content="Nickname" HorizontalAlignment="Left" Margin="10,0,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" Grid.ColumnSpan="2" Width="174"/>
         <Label x:Name="LoginUser" Content="login" HorizontalAlignment="Left" Margin="15,-40,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" Width="143"/>
-        <MenuItem x:Name="Settings" Header="" Grid.Column="6" Grid.Row="2" Margin="40,0,40,80">
-            <MenuItem.Icon>
-                <Image x:Name="SettingImage" Source="../imagesSystem/SettingItem.png"/>
-            </MenuItem.Icon>
-        </MenuItem>
+        <Button x:Name="Settings" FontFamily="Segoe Fluent Icons" Content="&#xe713;" Grid.Column="6" Grid.Row="1" Margin="40,153,60,100" Background="Transparent" Grid.RowSpan="2" Foreground="White" FontSize="32">
+        </Button>
         <Image x:Name="PhotoAccount" HorizontalAlignment="Left" Height="100" Margin="117,115,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.92,0.61" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
     </Grid>
 </Page>

@@ -69,7 +69,7 @@ namespace MemeSystem.Account
                 }
             }
             App.Current.Properties["EnterUser"] = exist;
-            if (exist) this.Close();
+            if (exist) DialogResult = true;
             else if (!wrong_password)
             {
                 MessageBox.Show("Аккаунт не найден. Возможно, вы ошиблись в вводе логина и пароля. Повторите ввод.");
@@ -96,8 +96,8 @@ namespace MemeSystem.Account
                         password = array[2],
                     });
                 }
-                return logins;
             }
+            return logins;
         }
     }
 }

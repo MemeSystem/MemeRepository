@@ -10,13 +10,31 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Background="#40000000" x:Name="Menu" BorderBrush="#022027">
-            <MenuItem x:Name="Popular" Header="популярное" Click="Popular_Click" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="151" Grid.Row="0"/>
-            <MenuItem x:Name="ByTag" Header="искать по тегами"  Click="ByTag_Click" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="210" Margin="10,0,0,0" Grid.Row="0"/>
-            <MenuItem x:Name="RandomStory" Header="случайная история"  Click="RandomStory_Click" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="233" Grid.Row="0"/>
-        </Menu>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <MenuItem x:Name="Popular" Header="популярное" Click="Popular_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" Width="300" FontSize="24" Grid.Column="2" Grid.Row="0" Background="#10000000"/>
+        <MenuItem x:Name="ByTag" Header="искать по тегам" Width="300" Click="ByTag_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Grid.Column="2" Grid.Row="1" Background="#10000000"/>
+        <MenuItem x:Name="RandomStory" Header="случайная история" Width="300" Click="RandomStory_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24"  Grid.Column="2" Grid.Row="2" Background="#10000000"/>
+
+        <ListView x:Name="List" Background="Transparent" Grid.Row="0" Grid.ColumnSpan="2"  Grid.RowSpan="6" Margin="50,20,50,20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Background="Wheat" BorderThickness="0,0,0,5" Margin="-8,20">
+                        <TextBlock Text="{Binding Text}" Padding="10,0" TextWrapping="Wrap" Width="{Binding ActualWidth, ElementName=List}" HorizontalAlignment="Stretch"/>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

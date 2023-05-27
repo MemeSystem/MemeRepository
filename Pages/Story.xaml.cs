@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MemeSystem.Account;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,33 @@ namespace MemeSystem.Pages
     /// <summary>
     /// Логика взаимодействия для Story.xaml
     /// </summary>
+
     public partial class Story : Page
     {
+        public string path_history = "../../../Files/History.csv";
+        class History
+        {
+            public string Text { get; set; } = null!;
+        }
+
         public Story()
         {
             InitializeComponent();
+
+            List<History> historis = new();
+            using (StreamReader sr = new(path_history, Encoding.UTF8))
+            {
+                while (sr.EndOfStream != true)
+                {
+                    string[] array = sr.ReadLine().Split(';');
+                    historis.Add(new History
+                    {
+                        Text = array[0]
+                    });
+                }
+            }
+
+            List.ItemsSource = historis;
         }
 
         private void Popular_Click(object sender, RoutedEventArgs e)
