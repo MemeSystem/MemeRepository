@@ -19,6 +19,7 @@ namespace MemeSystem.Pages
         {
             public string Text { get; set; } = null!;
             public int id;
+            public string tag;
             public int likes;
         }
 
@@ -96,10 +97,6 @@ namespace MemeSystem.Pages
             List.ItemsSource = popular;
         }
 
-        private void ByTag_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void RandomStory_Click(object sender, RoutedEventArgs e)
         {
@@ -133,6 +130,35 @@ namespace MemeSystem.Pages
                 }
             }
             List.ItemsSource = historis;
+        }
+
+        private void Search_Tag_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            List<History> stories = new();
+            using (StreamReader sr = new(path_history, Encoding.UTF8))
+            {
+                while (sr.EndOfStream != true)
+                {
+                    string[] array = sr.ReadLine().Split(';');
+                    stories.Add(new History
+                    {
+                        Text = array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
+                        tag = array[2]
+                    });
+                }
+            }
+            List<History> stories_by_tag = new();
+            foreach (History history in stories)
+            {
+                if (history.tag.ToLower().Contains(Search_Tag.Text.ToLower()))
+                {
+                    stories_by_tag.Add(new History
+                    {
+                        Text = history.Text,
+                    });
+                }
+            }
+            List.ItemsSource = stories_by_tag;
         }
     }
 }
