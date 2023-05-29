@@ -50,6 +50,8 @@ namespace MemeSystem.Account
                         NickNameUser.Content = array[3];
                         DescriptionUser.Content = array[4];
                         App.Current.Properties["DescriptionLoginUser"] = array[1];
+                        App.Current.Properties["DescriptionNicknameUser"] = array[3];
+                        App.Current.Properties["DescriptionDescriptionUser"] = array[4];
                     }
                 }
             }

@@ -88,7 +88,7 @@ namespace MemeSystem.Account
             List<Entrance> logins = new List<Entrance>();
             using (StreamReader sr = new StreamReader(path_logins))
             {
-                while (sr.EndOfStream != true)
+                for(int i = 0; i < path_logins.Length/5; i++)
                 {
                     string[] array = sr.ReadLine().Split(';');
                     logins.Add(new Entrance
