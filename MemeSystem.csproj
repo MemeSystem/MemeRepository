@@ -13,7 +13,6 @@
     <None Remove="imagesSystem\noneUser.jpg" />
     <None Remove="imagesSystem\nouname.png" />
     <None Remove="imagesSystem\nounameBanner.jpg" />
-    <None Remove="imagesSystem\SettingItem.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +28,6 @@
     <Resource Include="imagesSystem\noneUser.jpg" />
     <Resource Include="imagesSystem\nouname.png" />
     <Resource Include="imagesSystem\nounameBanner.jpg" />
-    <Resource Include="imagesSystem\SettingItem.png" />
   </ItemGroup>
 
 </Project>

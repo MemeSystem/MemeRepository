@@ -106,11 +106,6 @@ namespace MemeSystem.Pages
             List.ItemsSource = popular;
         }
 
-        private void ByTag_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void RandomStory_Click(object sender, RoutedEventArgs e)
         {
             List<History> historis = new();

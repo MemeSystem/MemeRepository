@@ -121,6 +121,7 @@ namespace MemeSystem.Account
                         password = his_password
                     });
                     WriteUserAccount(new_logins);
+                    App.Current.Properties["EnterUser"] = false;
                     this.Close();
                 }
             }

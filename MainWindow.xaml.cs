@@ -71,20 +71,24 @@ namespace MemeSystem
 
         private void Profile_click(object sender, RoutedEventArgs e)
         {
-            bool Enters = (bool)App.Current.Properties["EnterUser"];
-            if (Enters == true)
+            try
             {
-                Ent.Visibility = Visibility.Collapsed;
-                Registr.Visibility = Visibility.Collapsed;
-                Me.Visibility = Visibility.Visible;
-                MainFrame.Navigate(new Profile());
+                bool Enters = (bool)App.Current.Properties["EnterUser"];
+                if (Enters == true)
+                {
+                    Ent.Visibility = Visibility.Collapsed;
+                    Registr.Visibility = Visibility.Collapsed;
+                    Me.Visibility = Visibility.Visible;
+                    MainFrame.Navigate(new Profile());
+                }
+                else
+                {
+                    Ent.Visibility = Visibility.Visible;
+                    Registr.Visibility = Visibility.Visible;
+                    Me.Visibility = Visibility.Collapsed;
+                }
             }
-            else
-            {
-                Ent.Visibility = Visibility.Visible;
-                Registr.Visibility = Visibility.Visible;
-                Me.Visibility = Visibility.Collapsed;
-            }
+            catch { }
         }
 
         private void Story_click(object sender, RoutedEventArgs e)
