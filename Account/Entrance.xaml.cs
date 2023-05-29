@@ -12,6 +12,8 @@ namespace MemeSystem.Account
         private string mail;
         private string login;
         private string password;
+        private string nickname;
+        private string description;
         private static string path_logins = "../../../Files/Logins.csv";
 
         public Entrance() => InitializeComponent();
@@ -94,6 +96,8 @@ namespace MemeSystem.Account
                         mail = array[0],
                         login = array[1],
                         password = array[2],
+                        nickname = array[3],
+                        description = array[4]
                     });
                 }
             }
