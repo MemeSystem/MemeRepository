@@ -16,21 +16,12 @@ using System.Windows.Shapes;
 
 namespace MemeSystem.Account
 {
-    /// <summary>
-    /// Логика взаимодействия для SettingProfile.xaml
-    /// </summary>
     public partial class SettingProfile : Page
     {
         private BitmapImage? Image { get; set; } = null;
         private byte[]? Bytes { get; set; } = null;
         private string? String { get; set; } = null;
 
-        private string mail;
-        private string login;
-        private string password;
-        private string nickname;
-        private string description;
-        private static string path_logins = "../../../Files/Logins.csv";
         public SettingProfile()
         {
             InitializeComponent();
@@ -41,98 +32,99 @@ namespace MemeSystem.Account
 
         }
 
-        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-        //    try
-        //    {
-        //        if (Bytes != null)
-        //        {
-        //            Image = new();
-        //            Image.BeginInit();
-        //            Image.StreamSource = new MemoryStream(Bytes);
-        //            Image.EndInit();
-        //            PhotoUserEllips.ImageSource = new ImageSource()
-        //            {
-        //                Fill = new ImageBrush { ImageSource = Image }
-        //            };
-        //            String = Convert.ToBase64String(Bytes);
-        //        }
-        //    }
-        //    catch { }
-        }
-
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
+            User? currentUser = (User?)Application.Current.Properties["CurrentUser"];
+            List<User> users = new();
+            using (StreamReader sr = new(Properties.Resources.UsersPath))
+            {
+                while (sr?.EndOfStream != null)
+                {
+                    string? line = sr.ReadLine();
+                    if (line != null)
+                    {
+                        string[] array = line.Split(';');
+                        users.Add(new User
+                        {
+                            Email = array[0],
+                            UserName = array[1],
+                            Password = array[2],
+                            FullName = array[3],
+                            Description = array[4],
+                            Photo = array[5]
+                        });
+                    }
+                    else break;
+                }
+            }
+            foreach (User user in users)
+            {
+                if (user.UserName == currentUser?.UserName)
+                {
+                    user.UserName = LoginUser.Text;
+                    user.FullName = NickNameUser.Text;
+                    user.Description = DescriptionUser.Text;
+                    if (String != null)
+                        user.Photo = String;
+                    currentUser.UserName = LoginUser.Text;
+                    currentUser.FullName = NickNameUser.Text;
+                    currentUser.Description = DescriptionUser.Text;
+                    if (String != null)
+                        currentUser.Photo = String;
+                }
+            }
+            File.Create(Properties.Resources.UsersPath).Close();
+            using (StreamWriter streamWriter = new(Properties.Resources.UsersPath))
+            {
+                foreach (User user in users)
+                {
+                    streamWriter.WriteLine(user.ToString());
+                }
+            }
             NavigationService.Navigate(new Profile());
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            List<SettingProfile> data = ReadUsers();
-            List<SettingProfile> new_data = new();
-            string new_login = Convert.ToString(LoginUser.Text);
-            bool ABSOLUTELY_new_login = true;
-            foreach(SettingProfile profile in data)
-            {
-                if ((profile.login == new_login) && ((string)App.Current.Properties["DescriptionLoginUser"] != new_login))
-                {
-                    ABSOLUTELY_new_login = false;
-                    MessageBox.Show("Логин уже существует");
-                }
-                else if (profile.login == (string)App.Current.Properties["DescriptionLoginUser"])
-                {
-                    new_data.Add(new SettingProfile
-                    {
-                        mail = profile.mail,
-                        login = profile.login,
-                        password = profile.password,
-                        nickname = NickNameUser.Text,
-                        description = DescroptionUser.Text,
-                    });
-                }
-                else
-                {
-                    new_data.Add(new SettingProfile
-                    {
-                        mail = profile.mail,
-                        login = profile.login,
-                        password = profile.password,
-                        nickname = profile.nickname,
-                        description = profile.description,
-                    });
-                }
-            }
-            if (ABSOLUTELY_new_login)
-            {
-                using (StreamWriter sw = new StreamWriter(new_login, false, Encoding.UTF8))
-                {
-                    foreach (SettingProfile profile in new_data)
-                    {
-                        sw.WriteLine($"{profile.mail};{profile.login};{profile.password};{profile.nickname};{profile.description}");
-                    }
-                }
-            }
-            NavigationService.Navigate(new Profile());
+
         }
-        static List<SettingProfile> ReadUsers() //считывает аккаунты
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<SettingProfile> data = new();
-            using (StreamReader sr = new StreamReader(path_logins))
+            OpenFileDialog dialog = new();
+            bool? result = dialog.ShowDialog();
+            if (result == true)
             {
-                while (sr.EndOfStream != true)
-                {
-                    string[] array = sr.ReadLine().Split(';');
-                    data.Add(new SettingProfile
-                    {
-                        mail = array[0],
-                        login = array[1],
-                        password = array[2],
-                        nickname = array[3],
-                        description = array[4]
-                    });
-                }
+                Bytes = File.ReadAllBytes(dialog.FileName);
+                Image = new();
+                Image.BeginInit();
+                Image.StreamSource = new MemoryStream(Bytes);
+                Image.EndInit();
+                Photo.Fill = new ImageBrush { ImageSource = Image };
+                String = Convert.ToBase64String(Bytes);
             }
-            return data;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            User? currentUser = (User?)Application.Current.Properties["CurrentUser"];
+            if (currentUser != null)
+            {
+                LoginUser.Text = currentUser.UserName;
+                NickNameUser.Text = currentUser.FullName;
+                DescriptionUser.Text = currentUser.Description;
+                try
+                {
+                    Bytes = Convert.FromBase64String(currentUser.Photo);
+                    Image = new();
+                    Image.BeginInit();
+                    Image.StreamSource = new MemoryStream(Bytes);
+                    Image.EndInit();
+                    Photo.Fill = new ImageBrush { ImageSource = Image };
+                    String = Convert.ToBase64String(Bytes);
+                }
+                catch { }
+            }
         }
     }
 }

@@ -26,7 +26,7 @@
         <MenuItem x:Name="Popular" Header="популярное" Click="Popular_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" Width="300" FontSize="24" Grid.Column="2" Grid.Row="0" Background="#10000000"/>
         <MenuItem x:Name="RandomStory" Header="случайная история" Width="300" Click="RandomStory_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24"  Grid.Column="2" Grid.Row="1" Background="#10000000"/>
         <TextBox x:Name="Search_Tag" Text="" Height="40" Padding="30,5,0,0" Grid.Column="2" Grid.Row="2" Background="White" Margin="30,25,20,20" FontFamily="Sitka Subheading" FontSize="22" TextChanged="Search_Tag_TextChanged"/>
-        <ListView x:Name="List" Background="Transparent" Grid.Row="0" Grid.ColumnSpan="2"  Grid.RowSpan="6" Margin="50,20,50,20" FontFamily="Sitka Subheading" FontSize="18">
+        <ListView x:Name="List" Background="Transparent" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6" Margin="50,20,50,20" FontFamily="Sitka Subheading" FontSize="18" ScrollViewer.CanContentScroll="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" Background="Wheat" BorderThickness="0,0,0,5" Margin="-8,20">

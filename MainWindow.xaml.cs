@@ -1,4 +1,5 @@
 ﻿using MemeSystem.Account;
+using MemeSystem.Entities;
 using MemeSystem.Pages;
 using System;
 using System.Collections.Generic;
@@ -73,8 +74,7 @@ namespace MemeSystem
         {
             try
             {
-                bool Enters = (bool)App.Current.Properties["EnterUser"];
-                if (Enters == true)
+                if ((User?)Application.Current.Properties["CurrentUser"] is not null)
                 {
                     Ent.Visibility = Visibility.Collapsed;
                     Registr.Visibility = Visibility.Collapsed;

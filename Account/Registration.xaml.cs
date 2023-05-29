@@ -22,7 +22,7 @@ namespace MemeSystem.Account
         private static string path_logins = "../../../Files/Logins.csv";
         public override string ToString()
         {
-            return $"{mail};{login};{password};0;0";
+            return $"{mail};{login};{password};0;0;0";
         }
         public Registration() => InitializeComponent();
 

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MemeSystem.Entities;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,29 +11,14 @@ namespace MemeSystem.Account
 {
     public partial class Entrance : Window
     {
-        private string mail;
-        private string login;
-        private string password;
-        private string nickname;
-        private string description;
-        private static string path_logins = "../../../Files/Logins.csv";
+        public Entrance() =>
+            InitializeComponent();
 
-        public Entrance() => InitializeComponent();
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e) =>
+            DialogResult = false;
 
-        public override string ToString()
-        {
-            return $"{mail};{login};{password};0;0";
-        }
-
-        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
             DragMove();
-        }
 
         private void LoginChanged(object sender, TextChangedEventArgs e)
         {
@@ -50,58 +37,52 @@ namespace MemeSystem.Account
 
         private void EnterClick(object sender, RoutedEventArgs e)
         {
-            List<Entrance> logins = ReadUsers();
-            string his_login, his_password;
-            bool exist = false, wrong_password =false;
-            his_login = Convert.ToString(LoginName.Text);
-            his_password = Convert.ToString(PasswordName.Text);
-            foreach (Entrance user in logins)
+            List<User> users = ReadUsers();
+            string userName = LoginName.Text,
+                password = PasswordName.Text;
+            foreach (User user in users)
             {
-                if ((user.login == his_login) && (user.password != his_password))
+                if ((user.UserName == userName) && (user.Password != password))
                 {
                     MessageBox.Show("Неверный пароль");
-                    wrong_password = true;
-                    //if (Console.ReadLine() == "1") Restore(his_login); НУЖНО ОКНО С ИЗМЕНЕНИЕМ ПАРОЛЯ
                     break;
                 }
-                else if ((user.login == his_login) && (user.password == his_password))
+                else if ((user.UserName == userName) && (user.Password == password))
                 {
-                    exist = true;
-                    break;
+                    Application.Current.Properties["CurrentUser"] = user;
+                    DialogResult = true;
                 }
             }
-            App.Current.Properties["EnterUser"] = exist;
-            if (exist) DialogResult = true;
-            else if (!wrong_password)
-            {
-                MessageBox.Show("Аккаунт не найден. Возможно, вы ошиблись в вводе логина и пароля. Повторите ввод.");
-            }//переход в основное меню выбора действий для пользователя, что-то типа главного меню
-            login = his_login;
-            App.Current.Properties["LoginUser"] = his_login;
         }
-        public string GetLogin() //для передачи другим методам
+
+        //public string GetLogin() => //для передачи другим методам
+        //    login;
+
+        static List<User> ReadUsers() //считывает аккаунты
         {
-            return login;
-        }
-        static List<Entrance> ReadUsers() //считывает аккаунты
-        {
-            List<Entrance> logins = new List<Entrance>();
-            using (StreamReader sr = new StreamReader(path_logins))
+            List<User> users = new();
+            using (StreamReader sr = new(Properties.Resources.UsersPath))
             {
-                for(int i = 0; i < path_logins.Length/5; i++)
+                while (sr?.EndOfStream != null)
                 {
-                    string[] array = sr.ReadLine().Split(';');
-                    logins.Add(new Entrance
+                    string? line = sr.ReadLine();
+                    if (line != null)
                     {
-                        mail = array[0],
-                        login = array[1],
-                        password = array[2],
-                        nickname = array[3],
-                        description = array[4]
-                    });
+                        string[] array = line.Split(';');
+                        users.Add(new User
+                        {
+                            Email = array[0],
+                            UserName = array[1],
+                            Password = array[2],
+                            FullName = array[3],
+                            Description = array[4],
+                            Photo = array[5]
+                        });
+                    }
+                    else break;
                 }
             }
-            return logins;
+            return users;
         }
     }
 }
