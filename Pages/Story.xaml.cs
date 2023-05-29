@@ -1,20 +1,10 @@
-﻿using MemeSystem.Account;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MemeSystem.Pages
 {
@@ -44,7 +34,7 @@ namespace MemeSystem.Pages
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new History
                     {
-                        Text = array[1] + "\n#" + array[2],
+                        Text = array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
                     });
                 }
             }
@@ -66,7 +56,7 @@ namespace MemeSystem.Pages
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new History
                     {
-                        Text = "Автор: " + array[0] + "\nНазвание: " + array[1] + "\n#" + array[2] + "\n\n" + array[3]+"\n\nПонравилось " + array[4]+" людям",
+                        Text = "Автор: " + array[0] + "\nНазвание: " + array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
                         likes = Convert.ToInt32(array[4])
                     });
                 }
@@ -104,6 +94,11 @@ namespace MemeSystem.Pages
             }
 
             List.ItemsSource = popular;
+        }
+
+        private void ByTag_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void RandomStory_Click(object sender, RoutedEventArgs e)
