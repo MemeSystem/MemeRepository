@@ -68,32 +68,71 @@ namespace MemeSystem.Account
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            List<SettingProfile> logins = new List<SettingProfile>();
-            using (StreamWriter sw = new StreamWriter(path_logins))
+            List<SettingProfile> data = ReadUsers();
+            List<SettingProfile> new_data = new();
+            string new_login = Convert.ToString(LoginUser.Text);
+            bool ABSOLUTELY_new_login = true;
+            foreach(SettingProfile profile in data)
+            {
+                if ((profile.login == new_login) && ((string)App.Current.Properties["DescriptionLoginUser"] != new_login))
+                {
+                    ABSOLUTELY_new_login = false;
+                    MessageBox.Show("Логин уже существует");
+                }
+                else if (profile.login == (string)App.Current.Properties["DescriptionLoginUser"])
+                {
+                    new_data.Add(new SettingProfile
+                    {
+                        mail = profile.mail,
+                        login = profile.login,
+                        password = profile.password,
+                        nickname = NickNameUser.Text,
+                        description = DescroptionUser.Text,
+                    });
+                }
+                else
+                {
+                    new_data.Add(new SettingProfile
+                    {
+                        mail = profile.mail,
+                        login = profile.login,
+                        password = profile.password,
+                        nickname = profile.nickname,
+                        description = profile.description,
+                    });
+                }
+            }
+            if (ABSOLUTELY_new_login)
+            {
+                using (StreamWriter sw = new StreamWriter(new_login, false, Encoding.UTF8))
+                {
+                    foreach (SettingProfile profile in new_data)
+                    {
+                        sw.WriteLine($"{profile.mail};{profile.login};{profile.password};{profile.nickname};{profile.description}");
+                    }
+                }
+            }
+            NavigationService.Navigate(new Profile());
+        }
+        static List<SettingProfile> ReadUsers() //считывает аккаунты
+        {
+            List<SettingProfile> data = new();
             using (StreamReader sr = new StreamReader(path_logins))
             {
                 while (sr.EndOfStream != true)
                 {
                     string[] array = sr.ReadLine().Split(';');
-                    
-                    if (array[1] == (string)App.Current.Properties["DescriptionLoginUser"])
+                    data.Add(new SettingProfile
                     {
-                        logins.Add(new SettingProfile
-                        {
-                            mail = array[0],
-                            login = LoginUser.Text,
-                            password = array[2],
-                            nickname = NickNameUser.Text,
-                            description = DescroptionUser.Text,
-                        });
-                        foreach (SettingProfile user in logins)
-                        {
-                            sw.WriteLine($"{user.mail};{user.login};{user.password};{user.nickname};{user.description}");
-                        }
-                    }
+                        mail = array[0],
+                        login = array[1],
+                        password = array[2],
+                        nickname = array[3],
+                        description = array[4]
+                    });
                 }
             }
-            NavigationService.Navigate(new Profile());
+            return data;
         }
     }
 }
