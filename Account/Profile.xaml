@@ -62,7 +62,7 @@
 
         <Label x:Name="NickNameUser" Content="Nickname" HorizontalAlignment="Left" Margin="10,0,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" Grid.ColumnSpan="2" Width="174"/>
         <Label x:Name="LoginUser" Content="login" HorizontalAlignment="Left" Margin="15,-40,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" Width="143"/>
-        <Label x:Name="DescriptionUser" Content="Описание" HorizontalAlignment="Left" BorderBrush="White" BorderThickness="0,2,0,0" Margin="10,50,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Grid.ColumnSpan="4" Height="104"/>
+        <Label x:Name="DescriptionUser" Content="Введите описание" HorizontalAlignment="Left" BorderBrush="White" BorderThickness="0,2,0,0" Margin="10,50,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Grid.ColumnSpan="4" Height="104"/>
 
         <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xe713;" Grid.Column="6" Grid.Row="1" Margin="40,153,60,100" Background="Transparent" Grid.RowSpan="2" Foreground="White" FontSize="32" Click="Settings_Click" BorderBrush="Transparent">
         </Button>
