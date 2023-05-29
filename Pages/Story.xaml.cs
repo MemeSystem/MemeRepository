@@ -20,6 +20,7 @@ namespace MemeSystem.Pages
             public string Text { get; set; } = null!;
             public int id;
             public int likes;
+            FJFJFJJFJFJF
         }
 
         public Story()
