@@ -7,6 +7,48 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Story">
+    <Page.Resources>
+        <SolidColorBrush x:Key="ListBox.Static.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="ListBox.Static.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="Transparent"/>
+        <Style x:Key="ListViewStyle1" TargetType="{x:Type ListView}">
+            <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListView}">
+                        <Border x:Name="Bd" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="1" SnapsToDevicePixels="true">
+                            <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource ListBox.Disabled.Border}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsGrouping" Value="true"/>
+                                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,8 +67,8 @@
 
         <MenuItem x:Name="Popular" Header="популярное" Click="Popular_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" Width="300" FontSize="24" Grid.Column="2" Grid.Row="0" Background="#10000000"/>
         <MenuItem x:Name="RandomStory" Header="случайная история" Width="300" Click="RandomStory_Click" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24"  Grid.Column="2" Grid.Row="1" Background="#10000000"/>
-        <TextBox x:Name="Search_Tag" Text="" Height="40" Padding="30,5,0,0" Grid.Column="2" Grid.Row="2" Background="White" Margin="30,25,20,20" FontFamily="Sitka Subheading" FontSize="22" TextChanged="Search_Tag_TextChanged"/>
-        <ListView x:Name="List" Background="Transparent" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6" Margin="50,20,50,20" FontFamily="Sitka Subheading" FontSize="18" ScrollViewer.CanContentScroll="True">
+        <TextBox x:Name="Search_Tag" Text="" Height="40" Width="300" Padding="30,5,0,0" Grid.Column="2" Grid.Row="2" Background="White" Margin="30,25,20,20" FontFamily="Sitka Subheading" FontSize="22" TextChanged="Search_Tag_TextChanged"/>
+        <ListView Style="{DynamicResource ListViewStyle1}" x:Name="List" Background="Transparent" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6" Margin="50,20,50,20" FontFamily="Sitka Subheading" FontSize="18" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" Background="Wheat" BorderThickness="0,0,0,5" Margin="-8,20">
