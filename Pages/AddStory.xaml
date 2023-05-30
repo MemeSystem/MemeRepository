@@ -83,6 +83,30 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="4" Margin="10,-50,10,0" CornerRadius="50,0,50,0" Background="#ae5cd6"/>
+        <Border Margin="11,6,0,30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="3.2,0" StartPoint="0,11">
+                    <GradientStop Color="#ffffff"/>
+                    <GradientStop Color="#ae5cd6" Offset="0.4"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Margin="11,0,0,45" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="3.2,0" StartPoint="0,11">
+                    <GradientStop Color="#ffffff"/>
+                    <GradientStop Color="#ae5cd6" Offset="0.4"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Margin="11,0,0,45" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="3.2,0" StartPoint="0,11">
+                    <GradientStop Color="#ffffff"/>
+                    <GradientStop Color="#ae5cd6" Offset="0.4"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
         <TextBox x:Name="NameHistory" HorizontalAlignment="Left"  Margin="40,20,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap"  VerticalAlignment="Top" MinWidth="300" Height="60" FontSize="32" FontFamily="Sitka Subheading" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" Text="Название истории"  FontFamily="Sitka Subheading" FontSize="32" Foreground="DarkGray" HorizontalAlignment="Left"  Margin="45,30,0,0" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <TextBlock.Style>
