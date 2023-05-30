@@ -61,6 +61,15 @@ namespace MemeSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ../../../Files/History.csv.
+        /// </summary>
+        internal static string HistoryPath {
+            get {
+                return ResourceManager.GetString("HistoryPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ../../../Files/Logins.csv.
         /// </summary>
         internal static string UsersPath {
