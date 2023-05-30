@@ -47,9 +47,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="MemeSystem.Account" />
     <Using Include="MemeSystem.Entities" />
+    <Using Include="MemeSystem.Pages" />
     <Using Include="Microsoft.Win32" />
     <Using Include="System.IO" />
+    <Using Include="System.Text" />
     <Using Include="System.Windows" />
     <Using Include="System.Windows.Controls" />
     <Using Include="System.Windows.Media" />

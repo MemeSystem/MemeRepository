@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace MemeSystem.Pages
+﻿namespace MemeSystem.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Story.xaml
@@ -91,17 +83,8 @@ namespace MemeSystem.Pages
         private void RandomStory_Click(object sender, RoutedEventArgs e)
         {
             List<Histories> historis = new();
-            //int i = 0;
-            //using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
-            //{
-            //    while (sr.EndOfStream != true)
-            //    {
-            //        string[] array = sr.ReadLine().Split(';');
-            //        i++;
-            //    }
-            //}
             Random rnd = new Random();
-            int random_story = rnd.Next(0, Properties.Resources.HistoryPath.Length/5-1);
+            int random_story = rnd.Next(0, Properties.Resources.HistoryPath.Length / 5 - 1);
             int i = 0;
             using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
             {

@@ -1,22 +1,4 @@
-﻿using MemeSystem.Account;
-using MemeSystem.Entities;
-using MemeSystem.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace MemeSystem
+﻿namespace MemeSystem
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -43,7 +25,7 @@ namespace MemeSystem
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            foreach(MenuItem item in Menu.Items)
+            foreach (MenuItem item in Menu.Items)
             {
                 item.Width = ActualWidth / Menu.Items.Count - 20;
             }
@@ -56,7 +38,7 @@ namespace MemeSystem
 
         private void Registr_Click(object sender, RoutedEventArgs e)
         {
-            if(new Registration().ShowDialog() == true)
+            if (new Registration().ShowDialog() == true)
             {
                 MainFrame.Navigate(new TmpPage());
             }
