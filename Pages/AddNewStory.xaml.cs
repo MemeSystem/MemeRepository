@@ -28,42 +28,42 @@ namespace MemeSystem.Pages
 
         void Method()
         {
-            User? currentUser = (User?)Application.Current.Properties["CurrentUser"];
-            List<Histories> histories = new();
-            int id = 1;
-            using (StreamReader sr = new StreamReader(Properties.Resources.HistoryPath))
-            {
-                while(!sr.EndOfStream)
-                {
-                    string[] array = sr.ReadLine().Split(';');
-                    histories.Add(new Histories
-                    {
-                        id = Convert.ToInt32(array[0]), //надеюсь, тут не будет ебли со кодом символов
-                        Author = array[1],
-                        Name = array[2],
-                        tag = array[3],
-                        Text = array[4],
-                        likes = Convert.ToInt32(array[5]),
-                    });
-                    id++;
-                }
-            }
-            histories.Add(new Histories
-            {
-                id = id,
-                Author = currentUser.FullName,
-                Name = StoryName.Text, //тут поставить то, что в ксаэмельхуйне пропишет
-                tag = StoryTag.Text,
-                Text = StoryText.Text,
-                likes = 0
-            });
-            using (StreamWriter sw = new StreamWriter(Properties.Resources.HistoryPath))
-            {
-                foreach (Histories hist in histories)
-                {
-                    sw.WriteLine(hist.ToString());
-                }
-            }
+            //User? currentUser = (User?)Application.Current.Properties["CurrentUser"];
+            //List<Histories> histories = new();
+            //int id = 1;
+            //using (StreamReader sr = new StreamReader(Properties.Resources.HistoryPath))
+            //{
+            //    while(!sr.EndOfStream)
+            //    {
+            //        string[] array = sr.ReadLine().Split(';');
+            //        histories.Add(new Histories
+            //        {
+            //            id = Convert.ToInt32(array[0]), //надеюсь, тут не будет ебли со кодом символов
+            //            Author = array[1],
+            //            Name = array[2],
+            //            tag = array[3],
+            //            Text = array[4],
+            //            likes = Convert.ToInt32(array[5]),
+            //        });
+            //        id++;
+            //    }
+            //}
+            //histories.Add(new Histories
+            //{
+            //    id = id,
+            //    Author = currentUser.FullName,
+            //    Name = StoryName.Text, //тут поставить то, что в ксаэмельхуйне пропишет
+            //    tag = StoryTag.Text,
+            //    Text = StoryText.Text,
+            //    likes = 0
+            //});
+            //using (StreamWriter sw = new StreamWriter(Properties.Resources.HistoryPath))
+            //{
+            //    foreach (Histories hist in histories)
+            //    {
+            //        sw.WriteLine(hist.ToString());
+            //    }
+            //}
         }
     }
 }
