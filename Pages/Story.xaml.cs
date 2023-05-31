@@ -116,7 +116,7 @@
                     stories.Add(new Histories
                     {
                         Text = array[2] + "\n#" + array[3] + "\n\n" + array[4] + "\n\nПонравилось " + array[5] + " людям",
-                        tag = array[2]
+                        tag = array[3]
                     });
                 }
             }
