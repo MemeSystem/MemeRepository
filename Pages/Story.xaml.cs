@@ -1,4 +1,6 @@
-﻿namespace MemeSystem.Pages
+﻿using System.Collections.Immutable;
+
+namespace MemeSystem.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Story.xaml
@@ -18,7 +20,7 @@
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new Histories
                     {
-                        Text = array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
+                        Text = array[2] + "\n#" + array[3] + "\n\n" + array[4] + "\n\nПонравилось " + array[5] + " людям",
                     });
                 }
             }
@@ -84,22 +86,28 @@
         {
             List<Histories> historis = new();
             Random rnd = new Random();
-            int random_story = rnd.Next(0, Properties.Resources.HistoryPath.Length / 5 - 1);
-            int i = 0;
+            int count = 0;
+            using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
+            {
+                while (!sr.EndOfStream)
+                {
+                    sr.ReadLine();
+                    count++;
+                }
+            }
+            int random_story = rnd.Next(1, count+1);
             using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
             {
                 while (sr.EndOfStream != true)
                 {
                     string[] array = sr.ReadLine().Split(';');
-                    if (i == random_story)
+                    if (Convert.ToInt32(array[0])== random_story)
                     {
                         historis.Add(new Histories
                         {
                             Text = "Автор: " + array[1] + "\nНазвание: " + array[2] + "\n#" + array[3] + "\n\n" + array[4],
-                            id = i
                         });
                     }
-                    i++;
                 }
             }
             List.ItemsSource = historis;
@@ -115,8 +123,8 @@
                     string[] array = sr.ReadLine().Split(';');
                     stories.Add(new Histories
                     {
-                        Text = array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
-                        tag = array[2]
+                        Text = array[2] + "\n#" + array[3] + "\n\n" + array[4] + "\n\nПонравилось " + array[5] + " людям",
+                        tag = array[3]
                     });
                 }
             }

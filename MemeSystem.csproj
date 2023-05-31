@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="imagesAccount\**" />
+    <EmbeddedResource Remove="imagesAccount\**" />
+    <None Remove="imagesAccount\**" />
+    <Page Remove="imagesAccount\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="imagesSystem\noneUser.jpg" />
     <None Remove="imagesSystem\nouname.png" />
     <None Remove="imagesSystem\nounameBanner.jpg" />
@@ -21,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="imagesAccount\" />
     <Folder Include="FIles\" />
   </ItemGroup>
 
