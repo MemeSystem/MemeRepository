@@ -1,4 +1,6 @@
-﻿namespace MemeSystem.Pages
+﻿using System.Collections.Immutable;
+
+namespace MemeSystem.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Story.xaml
@@ -84,25 +86,37 @@
         {
             List<Histories> historis = new();
             Random rnd = new Random();
-            int random_story = rnd.Next(0, Properties.Resources.HistoryPath.Length / 5 - 1);
-            int i = 0;
+            int count = 0;
+            using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
+            {
+                while (!sr.EndOfStream)
+                {
+                    sr.ReadLine();
+                    count++;
+                }
+            }
+            int random_story = rnd.Next(1, count+1);
             using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
             {
                 while (sr.EndOfStream != true)
                 {
                     string[] array = sr.ReadLine().Split(';');
-                    if (i == random_story)
-                    {
                         historis.Add(new Histories
                         {
                             Text = "Автор: " + array[1] + "\nНазвание: " + array[2] + "\n#" + array[3] + "\n\n" + array[4],
-                            id = i
+                            id = Convert.ToInt32(array[0])
                         });
-                    }
-                    i++;
                 }
             }
-            List.ItemsSource = historis;
+            List<Histories> historis2 = new();
+            foreach (Histories history in historis)
+            {
+                if (history.id == random_story)
+                {
+                    historis2.Add(new Histories { Text = history.Text });
+                }
+            }
+            List.ItemsSource = historis2;
         }
 
         private void Search_Tag_TextChanged(object sender, TextChangedEventArgs e)
