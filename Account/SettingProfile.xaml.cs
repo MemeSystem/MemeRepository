@@ -132,7 +132,22 @@ namespace MemeSystem.Account
 
         private void PasswordUser_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            //if (IsMouseOver) PasswordUser.PasswordChar = '0';
+            ShowedPassword.Text = PasswordUser.Password;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            switch (PasswordUser.Visibility)
+            {
+                case Visibility.Visible:
+                    PasswordUser.Visibility = Visibility.Collapsed;
+                    ShowedPassword.Visibility = Visibility.Visible;
+                    break;
+                case Visibility.Collapsed:
+                    PasswordUser.Visibility = Visibility.Visible;
+                    ShowedPassword.Visibility = Visibility.Collapsed;
+                    break;
+            }
         }
     }
 }

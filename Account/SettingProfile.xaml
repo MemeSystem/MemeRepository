@@ -120,7 +120,13 @@
         <TextBox x:Name="NickNameUser" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" Grid.ColumnSpan="2" MinWidth="174"/>
         <TextBox x:Name="LoginUser"  HorizontalAlignment="Left" Background="#20ffffff" Margin="30,-40,0,0" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" MinWidth="143"/>
         <TextBox x:Name="DescriptionUser" HorizontalAlignment="Left" Background="#20ffffff" Margin="30,53,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Grid.ColumnSpan="4" Height="104" TextWrapping="Wrap"/>
-        <PasswordBox x:Name="PasswordUser" PasswordChar="&#xf0b6;" PasswordChanged="PasswordUser_PasswordChanged" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" FontSize="25" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174"/>
+        <StackPanel Orientation="Horizontal" Margin="30,3,50,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Grid.ColumnSpan="3">
+            <Grid>
+                <TextBlock x:Name="ShowedPassword" Background="#20ffffff" Foreground="White" FontSize="30" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174" Visibility="Collapsed"/>
+                <PasswordBox x:Name="PasswordUser" PasswordChar="*" PasswordChanged="PasswordUser_PasswordChanged" Background="#20ffffff" Foreground="White" FontSize="30" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174"/>
+            </Grid>
+            <Button MinWidth="30" Content="ПОКЕЖ ПАРОЛЬ" FontSize="30" Click="Button_Click_1"/>
+        </StackPanel>
 
 
         <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;" Margin="-5,-30,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}" FontSize="20"/>
