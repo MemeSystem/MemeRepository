@@ -9,6 +9,6 @@
       Title="MainPage">
 
     <Grid>
-        <TextBlock Text="Alesha"/>
+        <TextBlock Text="Alesha" Foreground="White"/>
     </Grid>
 </Page>

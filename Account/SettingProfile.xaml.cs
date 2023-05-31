@@ -64,11 +64,13 @@ namespace MemeSystem.Account
                     user.UserName = LoginUser.Text;
                     user.FullName = NickNameUser.Text;
                     user.Description = DescriptionUser.Text;
+                    user.Password = PasswordUser.Password;
                     if (String != null)
                         user.Photo = String;
                     currentUser.UserName = LoginUser.Text;
                     currentUser.FullName = NickNameUser.Text;
                     currentUser.Description = DescriptionUser.Text;
+                    currentUser.Password = PasswordUser.Password;
                     if (String != null)
                         currentUser.Photo = String;
                 }
@@ -86,7 +88,7 @@ namespace MemeSystem.Account
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Profile());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -113,6 +115,7 @@ namespace MemeSystem.Account
                 LoginUser.Text = currentUser.UserName;
                 NickNameUser.Text = currentUser.FullName;
                 DescriptionUser.Text = currentUser.Description;
+                PasswordUser.Password = currentUser.Password;
                 try
                 {
                     Bytes = Convert.FromBase64String(currentUser.Photo);
@@ -125,6 +128,11 @@ namespace MemeSystem.Account
                 }
                 catch { }
             }
+        }
+
+        private void PasswordUser_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            //if (IsMouseOver) PasswordUser.PasswordChar = '0';
         }
     }
 }

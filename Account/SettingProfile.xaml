@@ -31,6 +31,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="Transparent"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -59,12 +114,14 @@
                     <ImageBrush x:Name="PhotoUserEllips" ImageSource="/imagesSystem/noneUser.jpg" />
                 </Ellipse.Fill>
             </Ellipse>
-            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE722;" Grid.Row="2" Grid.Column="1" Background="Transparent" FontSize="35"  Margin="85,-10,30,110" Click="Button_Click"/>
+            <Button FontFamily="Segoe MDL2 Assets" Content="&#xE722;" Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" FontSize="35" Foreground="White" Margin="75,-10,30,110" Click="Button_Click"/>
         </Grid>
 
-        <TextBox x:Name="NickNameUser" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" Grid.ColumnSpan="2" Width="174"/>
-        <TextBox x:Name="LoginUser"  HorizontalAlignment="Left" Background="#20ffffff" Margin="30,-40,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" Width="143"/>
-        <TextBox x:Name="DescriptionUser" HorizontalAlignment="Left" Background="#20ffffff" Margin="30,53,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Grid.ColumnSpan="4" Height="104"/>
+        <TextBox x:Name="NickNameUser" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" Grid.ColumnSpan="2" MinWidth="174"/>
+        <TextBox x:Name="LoginUser"  HorizontalAlignment="Left" Background="#20ffffff" Margin="30,-40,0,0" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" MinWidth="143"/>
+        <TextBox x:Name="DescriptionUser" HorizontalAlignment="Left" Background="#20ffffff" Margin="30,53,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Grid.ColumnSpan="4" Height="104" TextWrapping="Wrap"/>
+        <PasswordBox x:Name="PasswordUser" PasswordChar="&#xf0b6;" PasswordChanged="PasswordUser_PasswordChanged" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" FontSize="25" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174"/>
+
 
         <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;" Margin="-5,-30,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}" FontSize="20"/>
         <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;"  Background="{x:Null}" FontSize="20"  Margin="-7,2,0,0" Grid.Row="2" Grid.Column="2"/>

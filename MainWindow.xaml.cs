@@ -83,5 +83,10 @@
             if ((User?)Application.Current.Properties["CurrentUser"] is not null) MainFrame.Navigate(new AddStory());
             else MessageBox.Show("Пожалуйста, пройдите авторизацию.", "Ошибка доступа к данным");
         }
+
+        private void Main_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
