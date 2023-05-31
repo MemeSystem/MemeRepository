@@ -101,22 +101,16 @@ namespace MemeSystem.Pages
                 while (sr.EndOfStream != true)
                 {
                     string[] array = sr.ReadLine().Split(';');
+                    if (Convert.ToInt32(array[0])== random_story)
+                    {
                         historis.Add(new Histories
                         {
                             Text = "Автор: " + array[1] + "\nНазвание: " + array[2] + "\n#" + array[3] + "\n\n" + array[4],
-                            id = Convert.ToInt32(array[0])
                         });
+                    }
                 }
             }
-            List<Histories> historis2 = new();
-            foreach (Histories history in historis)
-            {
-                if (history.id == random_story)
-                {
-                    historis2.Add(new Histories { Text = history.Text });
-                }
-            }
-            List.ItemsSource = historis2;
+            List.ItemsSource = historis;
         }
 
         private void Search_Tag_TextChanged(object sender, TextChangedEventArgs e)
