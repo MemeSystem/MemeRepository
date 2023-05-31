@@ -83,7 +83,7 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="4" Margin="10,-50,10,0" CornerRadius="50,0,50,0" Background="#ae5cd6"/>
-        <Border Margin="11,6,0,30" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+        <Border Margin="11,15,0,40" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush EndPoint="3.2,0" StartPoint="0,11">
                     <GradientStop Color="#ffffff"/>
@@ -91,7 +91,7 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Border Margin="11,0,0,45" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+        <Border Margin="11,5,0,53" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush EndPoint="3.2,0" StartPoint="0,11">
                     <GradientStop Color="#ffffff"/>
@@ -99,7 +99,7 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Border Margin="11,0,0,45" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+        <Border Margin="11,6,0,53" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
             <Border.Background>
                 <LinearGradientBrush EndPoint="3.2,0" StartPoint="0,11">
                     <GradientStop Color="#ffffff"/>
@@ -148,6 +148,6 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Style="{DynamicResource ButtonStyle1}" x:Name="AddHistory" Grid.Column="4" Grid.Row="1" Margin="20" Content="Опубликовать" FontSize="30" FontFamily="Sitka Subheading"/>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="AddHistory" Grid.Column="4" Grid.Row="1" Margin="40" Content="Опубликовать" FontSize="28" FontFamily="Sitka Subheading" Click="AddHistory_Click"/>
     </Grid>
 </Page>

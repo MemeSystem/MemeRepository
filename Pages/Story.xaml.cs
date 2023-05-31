@@ -18,7 +18,7 @@
                     string[] array = sr.ReadLine().Split(';');
                     historis.Add(new Histories
                     {
-                        Text = array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
+                        Text = array[2] + "\n#" + array[3] + "\n\n" + array[4] + "\n\nПонравилось " + array[5] + " людям",
                     });
                 }
             }
@@ -115,7 +115,7 @@
                     string[] array = sr.ReadLine().Split(';');
                     stories.Add(new Histories
                     {
-                        Text = array[1] + "\n#" + array[2] + "\n\n" + array[3] + "\n\nПонравилось " + array[4] + " людям",
+                        Text = array[2] + "\n#" + array[3] + "\n\n" + array[4] + "\n\nПонравилось " + array[5] + " людям",
                         tag = array[2]
                     });
                 }
