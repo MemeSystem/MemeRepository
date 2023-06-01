@@ -3,9 +3,6 @@ using System.Windows.Input;
 
 namespace MemeSystem.Account
 {
-    /// <summary>
-    /// Interaction logic for Registration.xaml
-    /// </summary>
     public partial class Registration : Window
     {
         private BitmapImage? Image { get; set; } = null;
@@ -110,6 +107,10 @@ namespace MemeSystem.Account
                     App.Current.Properties["EnterUser"] = false;
                     this.Close();
                 }
+            }
+            if ((his_login is null) || (his_password is null)||(his_mail is null))
+            {
+                MessageBox.Show("Необходимо ввести все данные!", "Пустое поле");
             }
 
             static void WriteUserAccount(List<User> logins)
