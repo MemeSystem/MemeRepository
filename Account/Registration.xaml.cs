@@ -57,7 +57,7 @@ namespace MemeSystem.Account
 
             List<User> logins = ReadUsers();
 
-            Regex reg_login = new Regex("[0-9][A-z]{6,}$");
+            Regex reg_login = new Regex("([0-9][A-z]){6,}$");
             string his_login = null;
             if (!reg_login.IsMatch(Login.Text)) his_login = Convert.ToString(Login.Text);
             else
