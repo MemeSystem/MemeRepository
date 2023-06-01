@@ -8,29 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingProfile"
      SizeChanged="Window_SizeChanged" MinWidth="1366" MinHeight="768" Loaded="Page_Loaded">
-
     <Page.Resources>
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="VerticalContentAlignment" Value="Top"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Label}">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -41,13 +19,13 @@
             </Setter>
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="Transparent"/>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="red"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="red"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="red"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="Transparent"/>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -86,6 +64,50 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="Wheat"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#dbb774"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -116,27 +138,32 @@
             </Ellipse>
             <Button FontFamily="Segoe MDL2 Assets" Content="&#xE722;" Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" FontSize="35" Foreground="White" Margin="75,-10,30,110" Click="Button_Click"/>
         </Grid>
-
-        <TextBox x:Name="NickNameUser" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" Grid.ColumnSpan="2" MinWidth="174"/>
-        <TextBox x:Name="LoginUser"  HorizontalAlignment="Left" Background="#20ffffff" Margin="30,-40,0,0" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" MinWidth="143"/>
-        <TextBox x:Name="DescriptionUser" HorizontalAlignment="Left" Background="#20ffffff" Margin="30,53,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Grid.ColumnSpan="4" Height="104" TextWrapping="Wrap"/>
+        <StackPanel Grid.Row="2" Grid.Column="2"  Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBox x:Name="NickNameUser" HorizontalAlignment="Left" Background="#20ffffff" Foreground="White" Margin="30,3,50,0" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="35" MinWidth="174"/>
+            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe70f;" Margin="-30,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock x:Name="LoginUser" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Bottom" FontFamily="Sitka Subheading" FontSize="30" Foreground="#FFDEAD" MinWidth="143"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal"  Grid.ColumnSpan="4">
+            <TextBox x:Name="DescriptionUser" HorizontalAlignment="Left" Background="#20ffffff" Margin="30,53,0,0" VerticalAlignment="Top" FontFamily="Sitka Subheading" FontSize="25" Foreground="#d4d2d2" Width="482" Height="104" TextWrapping="Wrap"/>
+            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xe70f;" Margin="30,53,0,0"  HorizontalAlignment="Left" FontSize="30" Foreground="White"/>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="30,3,50,0" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Grid.ColumnSpan="3">
             <Grid>
                 <TextBlock x:Name="ShowedPassword" Background="#20ffffff" Foreground="White" FontSize="30" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174" Visibility="Collapsed"/>
                 <PasswordBox x:Name="PasswordUser" PasswordChar="*" PasswordChanged="PasswordUser_PasswordChanged" Background="#20ffffff" Foreground="White" FontSize="30" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174"/>
             </Grid>
-            <Button MinWidth="30" Margin="15,0,0,0" Content="&#xf78d;" BorderBrush="Transparent" FontSize="30" Click="Button_Click_1"  Foreground="White" FontFamily="Segoe MDL2 Assets"/>
+            <Button MinWidth="30" Margin="15,0,0,0" Content="&#xf78d;" BorderBrush="Transparent" FontSize="30" Click="Button_Click_1"  Foreground="White" FontFamily="Segoe MDL2 Assets" BorderThickness="0"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="0,0,0,-30">
             <Border BorderBrush="Red" BorderThickness="1" Grid.Row="3" Margin="0,80,0,0" Height="2"/>
-            <Button x:Name="Exit" Content="Выйти" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Margin="30,20,0,0" FontFamily="Sitka Subheading" FontSize="30" Foreground="red" Click="Exit_Click"/>
-            <Button x:Name="DeliteAccount" Content="Удалить аккаунт" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Margin="30,0,0,0" FontFamily="Sitka Subheading" FontSize="30" Foreground="red" Click="DeliteAccount_Click"/>
+            <Button x:Name="Exit" BorderThickness="0,0,0,1" Content="Выйти" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Margin="30,20,0,0" FontFamily="Sitka Subheading" FontSize="30" Foreground="red" Click="Exit_Click"/>
+            <Button x:Name="DeliteAccount" BorderThickness="0,0,0,1" Content="Удалить аккаунт" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Margin="30,0,0,0" FontFamily="Sitka Subheading" FontSize="30" Foreground="red" Click="DeliteAccount_Click"/>
         </StackPanel>
-        <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;" Margin="-5,-30,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}" FontSize="20"/>
-        <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;"  Background="{x:Null}" FontSize="20"  Margin="-7,2,0,0" Grid.Row="2" Grid.Column="2"/>
-        <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xe74e;" Grid.Column="6" Grid.Row="1" Margin="40,153,60,100" Background="Transparent" Grid.RowSpan="2" Foreground="White" FontSize="32" BorderBrush="Transparent" Click="Settings_Click"/>
+        <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xe74e;" Grid.Column="6" Grid.Row="1" BorderThickness="0" Margin="40,153,60,100" Background="Transparent" Grid.RowSpan="2" Foreground="White" FontSize="32" BorderBrush="Transparent" Click="Settings_Click"/>
 
-        <Button x:Name="Cancel" FontFamily="Segoe MDL2 Assets" Content="&#xe711;" Grid.Column="6" Grid.Row="1" Margin="40,153,-60,100" Background="Transparent" Grid.RowSpan="2" HorizontalAlignment="Center" Foreground="White" FontSize="32" BorderBrush="Transparent" Click="Cancel_Click"/>
+        <Button x:Name="Cancel" FontFamily="Segoe MDL2 Assets" BorderThickness="0" Content="&#xe711;" Grid.Column="6" Grid.Row="1" Margin="40,153,-60,100" Background="Transparent" Grid.RowSpan="2" HorizontalAlignment="Center" Foreground="White" FontSize="32" BorderBrush="Transparent" Click="Cancel_Click"/>
 
     </Grid>
 </Page>

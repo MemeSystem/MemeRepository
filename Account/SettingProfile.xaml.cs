@@ -146,7 +146,70 @@ namespace MemeSystem.Account
 
         private void DeliteAccount_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Аккаунт удален.", "Успешно");
+            User DelUser = (User)Application.Current.Properties["CurrentUser"];
+            List<User> users = new();
+            using (StreamReader sr = new(Properties.Resources.UsersPath))
+            {
+                while (sr?.EndOfStream != null)
+                {
+                    string? line = sr.ReadLine();
+                    if (line != null)
+                    {
+                        string[] array = line.Split(';');
+                        if (DelUser.UserName != array[1])
+                        {
+                            users.Add(new User
+                            {
+                                Email = array[0],
+                                UserName = array[1],
+                                Password = array[2],
+                                FullName = array[3],
+                                Description = array[4],
+                                Photo = array[5]
+                            });
+                        }
+                    }
+                    else break;
+                }
+            }
+            using (StreamWriter sr = new(Properties.Resources.UsersPath, false, Encoding.UTF8))
+            {
+                foreach(User user in users)
+                {
+                    sr.WriteLine(user.ToString());
+                }
+            }
 
+            List<Histories> historis = new();
+            using (StreamReader sr = new(Properties.Resources.HistoryPath, Encoding.UTF8))
+            {
+                while (sr.EndOfStream != true)
+                {
+                    string[] array = sr.ReadLine().Split(';');
+                    if(DelUser.UserName != array[1])
+                    historis.Add(new Histories
+                    {
+                        id = Convert.ToInt32(array[0]),
+                        Author = array[1],
+                        Name = array[2],
+                        tag = array[3],
+                        Text = array[4],
+                        likes = Convert.ToInt32(array[5])
+                    });
+                }
+            }
+            using (StreamWriter sr = new(Properties.Resources.HistoryPath, false, Encoding.UTF8))
+            {
+                foreach (Histories history in historis)
+                {
+                    sr.WriteLine(history.ToString());
+                }
+            }
+
+            Application.Current.Properties["CurrentUser"] = null;
+            NavigationService.Navigate(new MainWindow());
+            NavigationService.Navigate(new MainPage());
         }
     }
 }
