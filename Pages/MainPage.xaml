@@ -9,6 +9,6 @@
       Title="MainPage">
 
     <Grid>
-        <TextBlock Text="Alesha" Foreground="White"/>
+        <TextBlock Text="Добро пожаловать в Meme System" FontSize="30"  Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
     </Grid>
 </Page>

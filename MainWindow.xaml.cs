@@ -8,14 +8,6 @@
         public MainWindow()
         {
             InitializeComponent();
-            //MainFrame.Navigate(new MainPage());
-            //if (true)
-            //    MessageBox.Show("пиздишь!", "сообщение о пиздеже");
-        }
-
-        private void First_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new TmpPage());
         }
 
         private void Main_Click(object sender, RoutedEventArgs e)
@@ -40,7 +32,7 @@
         {
             if (new Registration().ShowDialog() == true)
             {
-                MainFrame.Navigate(new TmpPage());
+                MainFrame.Navigate(new Registration());
             }
         }
 
@@ -48,7 +40,7 @@
         {
             if (new Entrance().ShowDialog() == true)
             {
-                MainFrame.Navigate(new TmpPage());
+                MainFrame.Navigate(new Entrance());
             }
         }
 
