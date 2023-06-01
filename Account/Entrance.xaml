@@ -141,7 +141,7 @@
                 </Label>
             </Grid>
         </Border>
-        <TextBox HorizontalAlignment="Left" Margin="40,10,0,0" Grid.Row="2" TextWrapping="Wrap" x:Name="LoginName"  VerticalAlignment="Top" Width="320" Height="40" FontSize="23" FontFamily="Sitka Subheading" BorderThickness="2" TextChanged="LoginChanged"/>
+        <TextBox HorizontalAlignment="Left" Margin="40,10,0,0" Grid.Row="2" TextWrapping="Wrap" x:Name="LoginName"  VerticalAlignment="Top" Width="320" Height="40" FontSize="23" FontFamily="Sitka Subheading" BorderThickness="2"/>
         <TextBlock IsHitTestVisible="False" Text="Введите логин"  FontFamily="Sitka Subheading" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="45,-4,0,0" Foreground="DarkGray" Grid.Row="2">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">

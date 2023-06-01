@@ -125,10 +125,13 @@
                 <TextBlock x:Name="ShowedPassword" Background="#20ffffff" Foreground="White" FontSize="30" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174" Visibility="Collapsed"/>
                 <PasswordBox x:Name="PasswordUser" PasswordChar="*" PasswordChanged="PasswordUser_PasswordChanged" Background="#20ffffff" Foreground="White" FontSize="30" Padding="0,0,0,15" Grid.ColumnSpan="2" MinWidth="174"/>
             </Grid>
-            <Button MinWidth="30" Content="ПОКЕЖ ПАРОЛЬ" FontSize="30" Click="Button_Click_1"/>
+            <Button MinWidth="30" Margin="15,0,0,0" Content="&#xf78d;" BorderBrush="Transparent" FontSize="30" Click="Button_Click_1"  Foreground="White" FontFamily="Segoe MDL2 Assets"/>
         </StackPanel>
-
-
+        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="0,0,0,-30">
+            <Border BorderBrush="Red" BorderThickness="1" Grid.Row="3" Margin="0,80,0,0" Height="2"/>
+            <Button x:Name="Exit" Content="Выйти" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Margin="30,20,0,0" FontFamily="Sitka Subheading" FontSize="30" Foreground="red" Click="Exit_Click"/>
+            <Button x:Name="DeliteAccount" Content="Удалить аккаунт" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" Margin="30,0,0,0" FontFamily="Sitka Subheading" FontSize="30" Foreground="red" Click="DeliteAccount_Click"/>
+        </StackPanel>
         <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;" Margin="-5,-30,50,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Background="{x:Null}" FontSize="20"/>
         <Label FontFamily="Segoe MDL2 Assets" Content="&#xe70f;"  Background="{x:Null}" FontSize="20"  Margin="-7,2,0,0" Grid.Row="2" Grid.Column="2"/>
         <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xe74e;" Grid.Column="6" Grid.Row="1" Margin="40,153,60,100" Background="Transparent" Grid.RowSpan="2" Foreground="White" FontSize="32" BorderBrush="Transparent" Click="Settings_Click"/>

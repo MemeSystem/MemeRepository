@@ -135,5 +135,18 @@ namespace MemeSystem.Account
                     break;
             }
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Properties["CurrentUser"] = null;
+            MessageBox.Show("Выход выполнен.", "Успешно");
+            NavigationService.Navigate(new MainWindow());
+            NavigationService.Navigate(new MainPage());
+        }
+
+        private void DeliteAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
