@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace MemeSystem.Account
@@ -14,10 +8,9 @@ namespace MemeSystem.Account
     /// </summary>
     public partial class Registration : Window
     {
-        public override string ToString()
-        {
-            return $"{mail};{login};{password};0;0;0";
-        }
+        private BitmapImage? Image { get; set; } = null;
+        private byte[]? Bytes { get; set; } = null;
+        private string? String { get; set; } = null;
         public Registration() => InitializeComponent();
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -57,11 +50,14 @@ namespace MemeSystem.Account
 
         private void Registration_click(object sender, RoutedEventArgs e)
         {
-            //List<object> list = vernul();
-            //if (vernul() != null)
-            //    Console.WriteLine();
-            //else
-            //    MessageBox.Show("nihuya ne vernul");
+            Bytes = File.ReadAllBytes(Properties.Resources.NounameUserPhoto);
+            Image = new();
+            Image.BeginInit();
+            Image.StreamSource = new MemoryStream(Bytes);
+            Image.EndInit();
+            ImageBrush photos = new ImageBrush { ImageSource = Image };
+            String = Convert.ToBase64String(Bytes);
+
             List<User> logins = ReadUsers();
 
             Regex reg_login = new Regex("[0-9][A-z]{6,}$");
@@ -108,7 +104,7 @@ namespace MemeSystem.Account
                         Password = his_password,
                         FullName = "User" + logins.Count,
                         Description = "Я новый пользователь Meme System!",
-                        Photo = "000" //Миша, помоги
+                        Photo = String //Миша, помоги
                     });
                     WriteUserAccount(new_logins);
                     App.Current.Properties["EnterUser"] = false;
@@ -122,7 +118,7 @@ namespace MemeSystem.Account
                 {
                     foreach (User user in logins)
                     {
-                        streamWriter.WriteLine($"{user.Email};{user.UserName};{user.Password}; {user.FullName};{user.Description};{user.Photo}");
+                        streamWriter.WriteLine(user.ToString());
                     }
                 }
             }
@@ -134,15 +130,19 @@ namespace MemeSystem.Account
                     while (sr.EndOfStream != true)
                     {
                         string[] array = sr.ReadLine().Split(';');
-                        logins.Add(new User()
+                        if (array != null)
                         {
-                            Email = array[0],
-                            UserName = array[1],
-                            Password = array[2],
-                            FullName = array[3],
-                            Description = array[4],
-                            Photo = array[5]
-                        });
+                            logins.Add(new User()
+                            {
+                                Email = array[0],
+                                UserName = array[1],
+                                Password = array[2],
+                                FullName = array[3],
+                                Description = array[4],
+                                Photo = array[5]
+                            });
+                        }
+
                     }
                     return logins;
                 }

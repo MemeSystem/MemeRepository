@@ -120,6 +120,9 @@
   <data name="HistoryPath" xml:space="preserve">
     <value>../../../Files/History.csv</value>
   </data>
+  <data name="NounameUserPhoto" xml:space="preserve">
+    <value>../../../imagesSystem/noneUser.jpg</value>
+  </data>
   <data name="UsersPath" xml:space="preserve">
     <value>../../../Files/Logins.csv</value>
   </data>
