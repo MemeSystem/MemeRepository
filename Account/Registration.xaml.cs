@@ -63,7 +63,7 @@ namespace MemeSystem.Account
             else
                 MessageBox.Show("Введен неверный логин", "Ошибка ввода логина");
 
-            Regex reg_password = new Regex("[0-9][A-z]{6,}");
+            Regex reg_password = new Regex("[0-9][A-z]{6,}$");
             string his_password = null;
             if (!reg_password.IsMatch(passwordI.Text)) his_password = Convert.ToString(passwordI.Text);
             else
