@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <Resource Include="imagesSystem\noneUser.jpg" />
-    <Resource Include="imagesSystem\nouname.png" />
     <Resource Include="imagesSystem\nounameBanner.jpg" />
   </ItemGroup>
 
