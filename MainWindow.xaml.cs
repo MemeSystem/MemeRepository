@@ -80,5 +80,10 @@
         {
 
         }
+
+        private void Second_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AllUsers());
+        }
     }
 }

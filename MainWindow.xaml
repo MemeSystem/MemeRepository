@@ -310,7 +310,7 @@
         <Menu Background="#40000000" x:Name="Menu" BorderBrush="#022027">
             <MenuItem x:Name="Main" Header="главная" Click="Main_Click" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="120" Margin="10,0,0,0"/>
             <MenuItem x:Name="First" Header="истории" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="120" Margin="10,0,0,0" Click="Story_click"/>
-            <MenuItem x:Name="Second" Header="теги" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="120" Margin="10,0,0,0"/>
+            <MenuItem x:Name="Second" Header="теги" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="120" Margin="10,0,0,0" Click="Second_Click"/>
             <MenuItem x:Name="Third" Header="новая история" BorderThickness="0,0,10,0" BorderBrush="#022027" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="220" Margin="10,0,0,0" Click="AddStory_click"/>
             <MenuItem x:Name="Fourth" Header="профиль" BorderThickness="0,0,0,0" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="24" Width="160" Margin="10,0,0,0" Click="Profile_click">
                 <MenuItem x:Name="Ent" Header="вход" Foreground="#e6e6e6" FontFamily="Sitka Subheading" FontSize="24" Height="30" Click="Ent_Click" Background="#40000000"/>
