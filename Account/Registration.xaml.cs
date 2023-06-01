@@ -14,12 +14,6 @@ namespace MemeSystem.Account
     /// </summary>
     public partial class Registration : Window
     {
-        private string mail;
-        private string login;
-        private string password;
-        private string nickname;
-        private string description;
-        private static string path_logins = "../../../Files/Logins.csv";
         public override string ToString()
         {
             return $"{mail};{login};{password};0;0;0";
@@ -68,7 +62,7 @@ namespace MemeSystem.Account
             //    Console.WriteLine();
             //else
             //    MessageBox.Show("nihuya ne vernul");
-            List<Registration> logins = ReadUsers();
+            List<User> logins = ReadUsers();
 
             Regex reg_login = new Regex("[0-9][A-z]{6,}$");
             string his_login = null;
@@ -89,14 +83,14 @@ namespace MemeSystem.Account
                 MessageBox.Show("Введена неверная почта", "Ошибка ввода почты");
 
             bool used_smth = false;
-            foreach (Registration login in logins)
+            foreach (User login in logins)
             {
-                if (his_login == login.login)
+                if (his_login == login.UserName)
                 {
                     MessageBox.Show("Аккаунт с таким логином уже существует");
                     used_smth = true;
                 }
-                if (his_mail == login.mail)
+                if (his_mail == login.Email)
                 {
                     MessageBox.Show("На данную почту уже зарегистрирован аккаунт");
                     used_smth = true;
@@ -104,16 +98,17 @@ namespace MemeSystem.Account
             }
             if (!used_smth)
             {
-                List<Registration> new_logins = ReadUsers();
+                List<User> new_logins = ReadUsers();
                 if (his_mail != null && his_password != null && his_login != null)
                 {
-                    new_logins.Add(new Registration
+                    new_logins.Add(new User
                     {
-                        mail = his_mail,
-                        login = his_login,
-                        password = his_password,
-                        nickname = "User" + logins.Count,
-                        description = "Я новый пользователь Meme System!"
+                        Email = his_mail,
+                        UserName = his_login,
+                        Password = his_password,
+                        FullName = "User" + logins.Count,
+                        Description = "Я новый пользователь Meme System!",
+                        Photo = "000" //Миша, помоги
                     });
                     WriteUserAccount(new_logins);
                     App.Current.Properties["EnterUser"] = false;
@@ -121,31 +116,32 @@ namespace MemeSystem.Account
                 }
             }
 
-            static void WriteUserAccount(List<Registration> logins)
+            static void WriteUserAccount(List<User> logins)
             {
-                using (StreamWriter streamWriter = new StreamWriter(path_logins, false, Encoding.UTF8))
+                using (StreamWriter streamWriter = new StreamWriter(Properties.Resources.UsersPath, false, Encoding.UTF8))
                 {
-                    foreach (Registration user in logins)
+                    foreach (User user in logins)
                     {
-                        streamWriter.WriteLine($"{user.mail};{user.login};{user.password}; {user.nickname};{user.description}");
+                        streamWriter.WriteLine($"{user.Email};{user.UserName};{user.Password}; {user.FullName};{user.Description};{user.Photo}");
                     }
                 }
             }
-            static List<Registration> ReadUsers() //считывает аккаунты
+            static List<User> ReadUsers() //считывает аккаунты
             {
-                List<Registration> logins = new List<Registration>();
-                using (StreamReader sr = new StreamReader(path_logins))
+                List<User> logins = new List<User>();
+                using (StreamReader sr = new StreamReader(Properties.Resources.UsersPath))
                 {
                     while (sr.EndOfStream != true)
                     {
                         string[] array = sr.ReadLine().Split(';');
-                        logins.Add(new Registration()
+                        logins.Add(new User()
                         {
-                            mail = array[0],
-                            login = array[1],
-                            password = array[2],
-                            nickname = array[3],
-                            description = array[4]
+                            Email = array[0],
+                            UserName = array[1],
+                            Password = array[2],
+                            FullName = array[3],
+                            Description = array[4],
+                            Photo = array[5]
                         });
                     }
                     return logins;
