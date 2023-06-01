@@ -14,10 +14,6 @@ namespace MemeSystem.Account
     /// </summary>
     public partial class Registration : Window
     {
-        public override string ToString()
-        {
-            return $"{mail};{login};{password};0;0;0";
-        }
         public Registration() => InitializeComponent();
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -114,6 +110,10 @@ namespace MemeSystem.Account
                     App.Current.Properties["EnterUser"] = false;
                     this.Close();
                 }
+            }
+            if ((his_login is null) || (his_password is null)||(his_mail is null))
+            {
+                MessageBox.Show("Необходимо ввести все данные!", "Пустое поле");
             }
 
             static void WriteUserAccount(List<User> logins)
