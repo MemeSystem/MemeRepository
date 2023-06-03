@@ -85,5 +85,10 @@
         {
             MainFrame.Navigate(new AllUsers());
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new MainPage());
+        }
     }
 }

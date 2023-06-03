@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:MemeSystem"
         mc:Ignorable="d"
         Background="#022027"
-        Title="Meme per Day" SizeChanged="Window_SizeChanged" MinWidth="1366" MinHeight="768" WindowState="Maximized">
+        Title="Meme per Day" SizeChanged="Window_SizeChanged"
+        MinWidth="1366" MinHeight="768" WindowState="Maximized"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <SolidColorBrush x:Key="Menu.Static.Background" Color="Transparent"/>
         <SolidColorBrush x:Key="Menu.Static.Border" Color="Transparent"/>
