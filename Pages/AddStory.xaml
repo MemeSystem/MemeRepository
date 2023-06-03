@@ -148,6 +148,6 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button Style="{DynamicResource ButtonStyle1}" x:Name="AddHistory" Grid.Column="4" Grid.Row="1" Margin="40" Content="Опубликовать" FontSize="28" FontFamily="Sitka Subheading" Click="AddHistory_Click"/>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="AddHistory" Grid.Column="4" Grid.Row="1" Margin="80,40,80,40" Foreground="White" Content="&#xf8aa;" FontSize="35" FontFamily="Segoe MDL2 Assets" Click="AddHistory_Click"/>
     </Grid>
 </Page>
