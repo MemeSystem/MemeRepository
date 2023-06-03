@@ -130,16 +130,7 @@
             </Border.Background>
             <Grid>
                 <Label Content="Регистрация" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="#ffffff" FontFamily="Sitka Subheading" FontSize="30" BorderThickness="0,0,0,2" BorderBrush="Black"/>
-                <Label Content="&#10006;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" MouseDoubleClick="Label_MouseDoubleClick" RenderTransformOrigin="0.5,0.5">
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="-44.308"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
+                <Label Content="&#10006;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" MouseDoubleClick="Label_MouseDoubleClick"/>
             </Grid>
         </Border>
         <TextBox HorizontalAlignment="Left" Margin="40,10,0,0" Grid.Row="2" TextWrapping="Wrap" x:Name="Login"  VerticalAlignment="Top" Width="320" Height="40" FontSize="23" FontFamily="Sitka Subheading" BorderThickness="2" TextChanged="LoginSC"/>
