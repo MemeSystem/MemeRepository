@@ -18,12 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="imagesSystem\mainBunny.png" />
     <None Remove="imagesSystem\noneUser.jpg" />
     <None Remove="imagesSystem\nouname.png" />
     <None Remove="imagesSystem\nounameBanner.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="imagesSystem\mainBunny.png" />
     <Resource Include="imagesSystem\meme1.ico" />
   </ItemGroup>
 
