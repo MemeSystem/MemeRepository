@@ -9,7 +9,6 @@
       Title="MainPage">
 
     <Grid>
-        <Image Margin="170,130,170,170" Source="/imagesSystem/mainBunny.png"/>
-        <TextBlock Text="Добро пожаловать в Meme System" FontSize="40" FontFamily="Sitka Subheading" Background="#022027" Margin="150,250,150,200" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock Text="Добро пожаловать в Meme System" FontSize="30" FontFamily="Sitka Subheading" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
     </Grid>
 </Page>

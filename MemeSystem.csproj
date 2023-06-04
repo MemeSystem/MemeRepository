@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="imagesSystem\mainBunny.png" />
     <Resource Include="imagesSystem\meme1.ico" />
   </ItemGroup>
 
